@@ -146,7 +146,7 @@ function init() {
 
 								const skeleton = this.skeleton;
 								const geometry = this.geometry;
-
+								debugger;
 								skinIndex.fromBufferAttribute( geometry.attributes.skinIndex0, index );
 								skinWeight.fromBufferAttribute( geometry.attributes.skinWeight0, index );
 
