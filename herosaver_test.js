@@ -159,6 +159,8 @@ function init() {
 									skinIndex3.fromBufferAttribute( geometry.attributes.skin3, index );
 								basePosition.fromBufferAttribute( geometry.attributes.position, index ).applyMatrix4( this.bindMatrix );
 								target.set( 0, 0, 0 );
+								console.log(Object.keys(geometry).join(','))
+								console.log(Object.keys(geometry.attributes).join(','))
 								if ( geometry.attributes.skinWeight0){	
 									console.log("GOT WEIGHT")
 									console.log(geometry)
