@@ -265,7 +265,7 @@ function init() {
     
 	stl_base = 			jQuery("<a/>").css(menu_style).text("Export STL");
 	
-    character_area = 	jQuery(".dropdowns-0-1-32").first();
+    character_area = 	jQuery("nav").first();
     character_area.css({"display": "flex", "justify-content": "center", "align-content": "center"});
     
     character_area.prepend(stl_base);
