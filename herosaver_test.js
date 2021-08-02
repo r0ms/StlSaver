@@ -153,9 +153,9 @@ function init() {
 								skinIndex0.fromBufferAttribute( geometry.attributes.skin0, index );
 								if(geometry.attributes.skin1)
 								 	skinIndex1.fromBufferAttribute( geometry.attributes.skin1, index );
-								if(geometry.attributes.skin1)
+								if(geometry.attributes.skin2)
 									skinIndex2.fromBufferAttribute( geometry.attributes.skin2, index );
-								if(geometry.attributes.skin1)
+								if(geometry.attributes.skin3)
 									skinIndex3.fromBufferAttribute( geometry.attributes.skin3, index );
 								basePosition.fromBufferAttribute( geometry.attributes.position, index ).applyMatrix4( this.bindMatrix );
 								target.set( 0, 0, 0 );
