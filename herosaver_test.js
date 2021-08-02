@@ -146,8 +146,7 @@ function init() {
 
 								const skeleton = this.skeleton;
 								const geometry = this.geometry;
-								debugger;
-								skinIndex.fromBufferAttribute( geometry.attributes.skinIndex0, index );
+								skinIndex.fromBufferAttribute( geometry.attributes.skin0, index );
 								skinWeight.fromBufferAttribute( geometry.attributes.skinWeight0, index );
 
 								basePosition.fromBufferAttribute( geometry.attributes.position, index ).applyMatrix4( this.bindMatrix );
