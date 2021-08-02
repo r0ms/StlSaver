@@ -126,9 +126,9 @@ function init() {
 
 			function writeFace( a, b, c, positionAttribute, object ) {
 
-				vA.fromAttribute( positionAttribute, a );
-				vB.fromAttribute( positionAttribute, b );
-				vC.fromAttribute( positionAttribute, c );
+				vA.fromBufferAttribute( positionAttribute, a );
+				vB.fromBufferAttribute( positionAttribute, b );
+				vC.fromBufferAttribute( positionAttribute, c );
 
 				if ( object.isSkinnedMesh === true ) {
 
@@ -147,10 +147,10 @@ function init() {
 								const skeleton = this.skeleton;
 								const geometry = this.geometry;
 
-								skinIndex.fromAttribute( geometry.attributes.skinIndex0, index );
-								skinWeight.fromAttribute( geometry.attributes.skinWeight0, index );
+								skinIndex.fromBufferAttribute( geometry.attributes.skinIndex0, index );
+								skinWeight.fromBufferAttribute( geometry.attributes.skinWeight0, index );
 
-								basePosition.fromAttribute( geometry.attributes.position, index ).applyMatrix4( this.bindMatrix );
+								basePosition.fromBufferAttribute( geometry.attributes.position, index ).applyMatrix4( this.bindMatrix );
 
 								target.set( 0, 0, 0 );
 
@@ -292,7 +292,7 @@ function inject_script(url, callback) {
 console.log("HeroSaver - Injecting Libraries");
 
 inject_script("//code.jquery.com/jquery-3.3.1.min.js", function () {
-   inject_script("//cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js", function () { 
+   inject_script("//cdnjs.cloudflare.com/ajax/libs/three.js/100/three.min.js", function () { 
 	  return setTimeout(init, 5000);
    })
 });
