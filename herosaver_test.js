@@ -147,10 +147,10 @@ function init() {
 								const skeleton = this.skeleton;
 								const geometry = this.geometry;
 
-								skinIndex.fromBufferAttribute( geometry.attributes.skinIndex0, index );
-								skinWeight.fromBufferAttribute( geometry.attributes.skinWeight0, index );
+								skinIndex.fromAttribute( geometry.attributes.skinIndex0, index );
+								skinWeight.fromAttribute( geometry.attributes.skinWeight0, index );
 
-								basePosition.fromBufferAttribute( geometry.attributes.position, index ).applyMatrix4( this.bindMatrix );
+								basePosition.fromAttribute( geometry.attributes.position, index ).applyMatrix4( this.bindMatrix );
 
 								target.set( 0, 0, 0 );
 
