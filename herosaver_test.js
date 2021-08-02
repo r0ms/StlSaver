@@ -292,7 +292,9 @@ function inject_script(url, callback) {
 console.log("HeroSaver - Injecting Libraries");
 
 inject_script("//code.jquery.com/jquery-3.3.1.min.js", function () {
-   inject_script("//cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js", function () { init() })
+   inject_script("//cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js", function () { 
+	  return setTimeout(init, 5000);
+   })
 });
 // inject_script("//code.jquery.com/jquery-3.3.1.min.js", function () {
 //     inject_script("//raw.githubusercontent.com/Sonic-Cloud/StlSaver/master/three.js", function () { init() })
