@@ -146,27 +146,27 @@ function init() {
 
 								const skeleton = this.skeleton;
 								const geometry = this.geometry;
-								skinIndex.fromBufferAttribute( geometry.attributes.skinIndex0, index );
-								skinWeight.fromBufferAttribute( geometry.attributes.skinWeight0, index );
-
+								console.log(geometry.attributes);
+								skinIndex.fromBufferAttribute( geometry.attributes.skin0, index );
 								basePosition.fromBufferAttribute( geometry.attributes.position, index ).applyMatrix4( this.bindMatrix );
-
 								target.set( 0, 0, 0 );
+								if ( geometry.attributes.skinWeight0){								
+									skinWeight.fromBufferAttribute( geometry.attributes.skinWeight0, index );
+									for ( let i = 0; i < 4; i ++ ) {
 
-								for ( let i = 0; i < 4; i ++ ) {
+										const weight = skinWeight.getComponent( i );
 
-									const weight = skinWeight.getComponent( i );
+										if ( weight !== 0 ) {
 
-									if ( weight !== 0 ) {
+											const boneIndex = skinIndex.getComponent( i );
 
-										const boneIndex = skinIndex.getComponent( i );
+											matrix.multiplyMatrices( skeleton.bones[ boneIndex ].matrixWorld, skeleton.boneInverses[ boneIndex ] );
 
-										matrix.multiplyMatrices( skeleton.bones[ boneIndex ].matrixWorld, skeleton.boneInverses[ boneIndex ] );
+											target.addScaledVector( vector.copy( basePosition ).applyMatrix4( matrix ), weight );
 
-										target.addScaledVector( vector.copy( basePosition ).applyMatrix4( matrix ), weight );
+										}
 
 									}
-
 								}
 
 								return target.applyMatrix4( this.bindMatrixInverse );
