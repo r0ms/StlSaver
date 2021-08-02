@@ -136,7 +136,10 @@ function init() {
 
 							const basePosition = new THREE.Vector3();
 
-							const skinIndex = new THREE.Vector4();
+							const skinIndex0 = new THREE.Vector4();
+							const skinIndex1 = new THREE.Vector4();
+							const skinIndex2 = new THREE.Vector4();
+							const skinIndex3 = new THREE.Vector4();
 							const skinWeight = new THREE.Vector4();
 
 							const vector = new THREE.Vector3();
@@ -146,22 +149,24 @@ function init() {
 
 								const skeleton = this.skeleton;
 								const geometry = this.geometry;
-								console.log(geometry.attributes);
-								skinIndex.fromBufferAttribute( geometry.attributes.skin0, index );
+								//console.log(geometry.attributes);
+								skinIndex0.fromBufferAttribute( geometry.attributes.skin0, index );
+								skinIndex1.fromBufferAttribute( geometry.attributes.skin1, index );
+								skinIndex2.fromBufferAttribute( geometry.attributes.skin2, index );
+								skinIndex3.fromBufferAttribute( geometry.attributes.skin3, index );
 								basePosition.fromBufferAttribute( geometry.attributes.position, index ).applyMatrix4( this.bindMatrix );
 								target.set( 0, 0, 0 );
-								if ( geometry.attributes.skinWeight0){								
+								if ( geometry.attributes.skinWeight0){	
+									console.log("GOT WEIGHT")
+									console.log(geometry)
 									skinWeight.fromBufferAttribute( geometry.attributes.skinWeight0, index );
 									for ( let i = 0; i < 4; i ++ ) {
 
 										const weight = skinWeight.getComponent( i );
 
 										if ( weight !== 0 ) {
-
-											const boneIndex = skinIndex.getComponent( i );
-
+											const boneIndex = skinIndex0.getComponent( i );
 											matrix.multiplyMatrices( skeleton.bones[ boneIndex ].matrixWorld, skeleton.boneInverses[ boneIndex ] );
-
 											target.addScaledVector( vector.copy( basePosition ).applyMatrix4( matrix ), weight );
 
 										}
