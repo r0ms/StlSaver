@@ -146,9 +146,9 @@ function init() {
 							const matrix = new THREE.Matrix4();
 
 							return function ( index, target ) {
-
-								const skeleton = this.skeleton;
 								const geometry = this.geometry;
+								const skeleton = geometry.mainSkeleton
+		
 								//console.log(geometry.attributes);
 								skinIndex0.fromBufferAttribute( geometry.attributes.skin0, index );
 								if(geometry.attributes.skin1)
