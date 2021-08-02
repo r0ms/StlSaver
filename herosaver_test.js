@@ -126,9 +126,9 @@ function init() {
 
 			function writeFace( a, b, c, positionAttribute, object ) {
 
-				vA.fromBufferAttribute( positionAttribute, a );
-				vB.fromBufferAttribute( positionAttribute, b );
-				vC.fromBufferAttribute( positionAttribute, c );
+				vA.fromAttribute( positionAttribute, a );
+				vB.fromAttribute( positionAttribute, b );
+				vC.fromAttribute( positionAttribute, c );
 
 				if ( object.isSkinnedMesh === true ) {
 
