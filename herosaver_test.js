@@ -283,7 +283,7 @@ function init() {
 										const weight = decodeSkinWeight(encodedWeight);
 										for(let bi = 0; bi < 4; bi++ ){
 											if (weight !== 0) {
-												const boneIndex = skinIndex0.getComponent(i);
+												const boneIndex = skinIndex0.getComponent(bi);
 												if(skeleton.bones[boneIndex]){
 													matrix.multiplyMatrices(skeleton.bones[boneIndex].matrixWorld, skeleton.boneInverses[boneIndex]);
 													target.addScaledVector(vector.copy(basePosition).applyMatrix4(matrix), weight);
