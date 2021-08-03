@@ -232,7 +232,7 @@ function init() {
 								const geometry = this.geometry;
 								const skeleton = this.skeleton
 								let extremeIndices = geometry.extremeIndices;
-								let {attributes : {position : positionArray}} = geometry
+								let {attributes : {position : { array : positionArray }}} = geometry
 								if (extremeIndices === undefined) {
 									// Part doesn't have extreme indices defined. Probably not exported yet. Fake some for now.
 									const vertexCount = positionArray.length / 3;
