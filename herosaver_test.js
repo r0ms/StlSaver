@@ -240,10 +240,11 @@ function init() {
 										extremeIndices[i] = Math.trunc(vertexCount * (i + 0.5) / defaultExtremeCount);
 									}
 								}
-								const position = new RK.Vec3();
-								const matrix = new RK.Matrix4();
-								const matrixElements = matrix.elements;
-
+								const zeroMatrix = new RK.Matrix4().set(
+                    0, 0, 0, 0,
+                    0, 0, 0, 0,
+                    0, 0, 0, 0,
+                    0, 0, 0, 0,);
 								//this.normalizeSkinWeight()
 								skinIndex0.fromBufferAttribute(geometry.attributes.skin0, index);
 								if (geometry.attributes.skin1)
