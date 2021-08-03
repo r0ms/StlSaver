@@ -229,6 +229,7 @@ function init() {
 							const skinWeight = new THREE.Vector4();
 
 							return function (index, target) {
+								const defaultExtremeCount = 5;
 								const geometry = this.geometry;
 								const skeleton = this.skeleton
 								let extremeIndices = geometry.extremeIndices;
