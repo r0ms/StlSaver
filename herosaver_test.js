@@ -113,7 +113,7 @@ function init() {
 				var objects = [];
 				var triangles = 0;
 
-				scene.traverse(function (object) {
+				scene.traverseVisible(function (object) {
 
 					if (object.isMesh) {
 
