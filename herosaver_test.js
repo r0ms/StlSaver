@@ -268,6 +268,7 @@ function init() {
 								const matrix = new THREE.Matrix4();
 								basePosition.fromBufferAttribute(geometry.attributes.position, index).applyMatrix4(this.bindMatrix);
 								target.set(0, 0, 0);
+								let tpi=0
 								for (let di = 0; di < extremeIndices.length; ++di, ++tpi) {
 									const pi = extremeIndices[di];
 									const vertexOffset = pi * 4;
