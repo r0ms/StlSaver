@@ -231,7 +231,19 @@ function init() {
 							return function (index, target) {
 								const geometry = this.geometry;
 								const skeleton = this.skeleton
-								___o = this;
+								let extremeIndices = geometry.extremeIndices;
+								if (extremeIndices === undefined) {
+									// Part doesn't have extreme indices defined. Probably not exported yet. Fake some for now.
+									const vertexCount = positionArray.length / 3;
+									extremeIndices = new Uint32Array(defaultExtremeCount);
+									for (let i = 0; i < defaultExtremeCount; ++i) {
+										extremeIndices[i] = Math.trunc(vertexCount * (i + 0.5) / defaultExtremeCount);
+									}
+								}
+								const position = new RK.Vec3();
+								const matrix = new RK.Matrix4();
+								const matrixElements = matrix.elements;
+
 								//this.normalizeSkinWeight()
 								skinIndex0.fromBufferAttribute(geometry.attributes.skin0, index);
 								if (geometry.attributes.skin1)
@@ -254,23 +266,29 @@ function init() {
 								const matrix = new THREE.Matrix4();
 								basePosition.fromBufferAttribute(geometry.attributes.position, index).applyMatrix4(this.bindMatrix);
 								target.set(0, 0, 0);
-								for (let ii = 0; ii < influenceCount; ++ii) {
-									const skinArrayIndex = Math.floor(ii / 2);
-									const skinPairOffset = vertexOffset + (ii % 2) * 2;
-									const skinArray = skinArrays[skinArrayIndex];
-									const weightOffset = skinPairOffset + 1;
-									const encodedWeight = skinArray[weightOffset];
-									const weight = decodeSkinWeight(encodedWeight);
+								for (let di = 0; di < extremeIndices.length; ++di, ++tpi) {
+									const pi = extremeIndices[di];
+									const vertexOffset = pi * 4;
+									matrix.copy(zeroMatrix);
+									//let weightSum = 0;
 
-									if (weight !== 0) {
-										const boneIndex = skinIndex0.getComponent(i);
-										matrix.multiplyMatrices(skeleton.bones[boneIndex].matrixWorld, skeleton.boneInverses[boneIndex]);
-										target.addScaledVector(vector.copy(basePosition).applyMatrix4(matrix), weight);
+									for (let ii = 0; ii < influenceCount; ++ii) {
+										const skinArrayIndex = Math.floor(ii / 2);
+										const skinPairOffset = vertexOffset + (ii % 2) * 2;
+										const skinArray = skinArrays[skinArrayIndex];
+										const weightOffset = skinPairOffset + 1;
+										const encodedWeight = skinArray[weightOffset];
+										const weight = decodeSkinWeight(encodedWeight);
+
+										if (weight !== 0) {
+											const boneIndex = skinIndex0.getComponent(i);
+											matrix.multiplyMatrices(skeleton.bones[boneIndex].matrixWorld, skeleton.boneInverses[boneIndex]);
+											target.addScaledVector(vector.copy(basePosition).applyMatrix4(matrix), weight);
+
+										}
 
 									}
-
 								}
-								
 								return target.applyMatrix4(this.bindMatrixInverse);
 
 							};
