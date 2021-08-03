@@ -147,21 +147,21 @@ function init() {
 
 							return function ( index, target ) {
 								const geometry = this.geometry;
-								const skeleton = geometry.mainSkeleton
-		
-								//console.log(geometry.attributes);
-								//skinIndex0.fromBufferAttribute( geometry.attributes.skin0, index );
+								const skeleton = this.skeleton
+								___o = this;
+								//this.normalizeSkinWeight()
+								skinIndex0.fromBufferAttribute( geometry.attributes.skin0, index );
 								if(geometry.attributes.skin1)
-								 	skinIndex0.fromBufferAttribute( geometry.attributes.skin1, index );
+								 	skinIndex1.fromBufferAttribute( geometry.attributes.skin1, index );
 								if(geometry.attributes.skin2)
 									skinIndex2.fromBufferAttribute( geometry.attributes.skin2, index );
 								if(geometry.attributes.skin3)
 									skinIndex3.fromBufferAttribute( geometry.attributes.skin3, index );
 								basePosition.fromBufferAttribute( geometry.attributes.position, index ).applyMatrix4( this.bindMatrix );
 								target.set( 0, 0, 0 );
-								console.log(Object.keys(geometry).join(','))
-								console.log(Object.keys(geometry.attributes).join(','))
-								if ( geometry.attributes.skinWeight0){	
+							//	console.log(Object.keys(geometry).join(','))
+							//	console.log(Object.keys(geometry.attributes).join(','))
+								if ( !geometry.attributes.skinWeight0){	
 									console.log("GOT WEIGHT")
 									console.log(geometry)
 									skinWeight.fromBufferAttribute( geometry.attributes.skinWeight0, index );
