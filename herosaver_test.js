@@ -150,9 +150,9 @@ function init() {
 								const skeleton = geometry.mainSkeleton
 		
 								//console.log(geometry.attributes);
-								skinIndex0.fromBufferAttribute( geometry.attributes.skin0, index );
+								//skinIndex0.fromBufferAttribute( geometry.attributes.skin0, index );
 								if(geometry.attributes.skin1)
-								 	skinIndex1.fromBufferAttribute( geometry.attributes.skin1, index );
+								 	skinIndex0.fromBufferAttribute( geometry.attributes.skin1, index );
 								if(geometry.attributes.skin2)
 									skinIndex2.fromBufferAttribute( geometry.attributes.skin2, index );
 								if(geometry.attributes.skin3)
