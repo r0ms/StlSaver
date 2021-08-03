@@ -246,12 +246,13 @@ function init() {
                     0, 0, 0, 0,
                     0, 0, 0, 0,);
 								//this.normalizeSkinWeight()
+								const {attributes : {skin0, skin1}} = geometry
 								skinIndex0.fromBufferAttribute(geometry.attributes.skin0, index);
 								if (geometry.attributes.skin1)
 									skinIndex1.fromBufferAttribute(geometry.attributes.skin1, index);
 
-								const skinArray0 = skinIndex0.array;
-								const skinArray1 = skinIndex1?.array;
+								const skinArray0 = skin0.array;
+								const skinArray1 = skin1?.array;
 								const skinArrays = [skinArray0];
 								let influenceCount = 2;
 								if (skinArray1) {
